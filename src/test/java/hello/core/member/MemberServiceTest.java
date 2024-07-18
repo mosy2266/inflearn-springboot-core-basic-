@@ -1,7 +1,9 @@
 package hello.core.member;
 
 //assertThat은 jupiter가 아닌 core에 있다...
+import hello.core.AppConfig;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 //멤버 서비스 테스트 코드
 class MemberServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
+    //MemberService memberService = new MemberServiceImpl();
+    MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     void join() {
