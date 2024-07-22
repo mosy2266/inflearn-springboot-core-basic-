@@ -52,6 +52,11 @@ public class OrderServiceImpl implements OrderService {
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
+
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }
 
 //위 코드로 이제 OrderServiceImpl은 더이상 FixDiscountPolicy를 의존하지 않고 단지 DiscountPolicy에만 의존함

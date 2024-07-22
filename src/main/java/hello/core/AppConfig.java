@@ -30,17 +30,20 @@ public class AppConfig {
 
     @Bean //해당 메서드가 스프링 컨테이너에 스프링 빈으로 등록됨, 따로 설정해주지 않으면 메서드 명이 스프링 빈의 이름으로 사용됨
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService"); //호출 로그 남김. 1번
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService"); //1번
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     //다른 구현체로 변경할 땐 이 부분만 고치면 된다
     @Bean
     public MemoryMemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository"); //2번? 3번?
         return new MemoryMemberRepository();
     }
 
