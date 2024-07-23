@@ -6,7 +6,10 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component  //컴포넌트 스캔의 대상이 되도록
 public class OrderServiceImpl implements OrderService {
 
     /*
@@ -40,6 +43,7 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy; //구현체가 없다!! -> 이 상태에서는 NPE(Null Pointer Exception)이 발생
     //이 문제를 해결하려면 누군가가 클라이언트인 OrderServiceImpl에 DiscountPolicy의 구현 객체를 대신 생성하고 주입해줘야 함!
 
+    @Autowired //의존관계를 자동으로 주입해줌
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
